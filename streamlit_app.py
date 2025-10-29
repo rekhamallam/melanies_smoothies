@@ -13,7 +13,16 @@ st.write(
     """ Choose any 5 fruits!
     """
 )
+my_dataframe = session.table("SMOOTHIES.PUBLIC.FRUIT_OPTIONS").select(
+    col("FRUIT_NAME"),
+    col("SEARCH_ON")
+)
 
+# Display Snowflake DataFrame directly in Streamlit
+st.dataframe(data=my_dataframe, use_container_width=True)
+
+# Stop execution after showing data (useful for debugging)
+st.stop()
 name_on_order = st.text_input("Name on Order", "Mellymel")
 st.write("The currentName of Order is", name_on_order)
 
