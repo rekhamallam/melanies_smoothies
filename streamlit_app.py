@@ -17,20 +17,24 @@ cnx = st.connection("snowflake")
 #session = get_active_session()
 session = cnx.session()
 #my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
-my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'), col('SEARCH_ON'))
-
+my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'),col('SEARCH_ON'))
 st.dataframe(pd_df)
 st.stop()
 # Extract the value from each Row object into a simple Python list
-ingredients_list = st.multiselect('Choose any 5 fruits!',my_dataframe, max_selections =5) 
-st.write(ingredients_list)
+ingredients_list = st.multiselect(
+    'Choose any 5 fruits:'
+    , my_dataframe
+    , max_selections =5
+    ) 
 
 if ingredients_list:
+        ingredients_string = ''
     
-    
-    ingredients_string = ''
-    for FRUIT_CHOSEN in ingredients_list:
-        ingredients_string += FRUIT_CHOSEN + ' '
+        for FRUIT_CHOSEN in ingredients_list:
+            ingredients_string += FRUIT_CHOSEN + ' '
+
+            search_on=pd_df.loc[pd_df['FRUI_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
+            st.write('he search value for' , FRUIT_CHOSEN,' is ', search_on, '.')
         st.subheader(FRUIT_CHOSEN + 'Nutrition Information')
         smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/" + FRUIT_CHOSEN)
         #sf_df = st.dataframe(data=smothieifroot_response.json(), use_container_width=True)
