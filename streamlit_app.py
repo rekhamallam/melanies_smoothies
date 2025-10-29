@@ -23,8 +23,8 @@ session = cnx.session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
 
 # Extract the value from each Row object into a simple Python list
-ingredients_string = st.multiselect('Choose any 5 fruits!',my_dataframe, max_selections =5) 
-st.write(ingredients_string)
+ingredients_list = st.multiselect('Choose any 5 fruits!',my_dataframe, max_selections =5) 
+st.write(ingredients_list)
 
 if ingredients_list:
     
