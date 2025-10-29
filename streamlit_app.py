@@ -4,8 +4,8 @@ import streamlit as st
 from snowflake.snowpark.functions import col
 import requests
 smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-st.text(smoothiefroot_response.json)
-#sf_df = st.dataframe(data=smothiefroot_response.json, use_container_width=True)
+#st.text(smoothiefroot_response.json)
+sf_df = st.dataframe(data=smothiefroot_response.json, use_container_width=True)
 
 
 # Write directly to the app
