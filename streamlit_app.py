@@ -26,7 +26,7 @@ my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT
 ingredients_string = st.multiselect('Choose any 5 fruits!',my_dataframe, max_selections =5) 
 st.write(ingredients_string)
 
-if ingredients_lis:
+if ingredients_list:
     
     
     ingredients_string = ''
