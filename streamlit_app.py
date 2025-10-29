@@ -20,7 +20,11 @@ st.write("The currentName of Order is", name_on_order)
 cnx = st.connection("snowflake")
 #session = get_active_session()
 session = cnx.session()
-my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
+#my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
+my_dataframe = session.table('smoothies.public.fruit_options')
+                      .select(col('FRUIT_NAME'), col('SEARCH_ON'))
+pd_df=mydataframe.to_pandas()
+st.dataframe(pd_df)
 
 # Extract the value from each Row object into a simple Python list
 ingredients_list = st.multiselect('Choose any 5 fruits!',my_dataframe, max_selections =5) 
