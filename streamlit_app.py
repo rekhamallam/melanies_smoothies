@@ -13,9 +13,9 @@ st.write(
     """ Choose any 5 fruits!
     """
 )
-my_dataframe = st.table("SMOOTHIES.PUBLIC.FRUIT_OPTIONS").select(
-    col("FRUIT_NAME"),
-    col("SEARCH_ON")
+my_dataframe = session.table("smoothies.public.fruit_options").select(
+    col('FRUIT_NAME'), 
+    col('SEARCH_ON')
 )
 
 # Display Snowflake DataFrame directly in Streamlit
