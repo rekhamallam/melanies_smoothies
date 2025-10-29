@@ -18,8 +18,7 @@ cnx = st.connection("snowflake")
 session = cnx.session()
 #my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'), col('SEARCH_ON'))
-#convert the snowpark dataframe to panda dataframw
-pd_df=my_dataframe.to_pandas()
+
 st.dataframe(pd_df)
 st.stop()
 # Extract the value from each Row object into a simple Python list
