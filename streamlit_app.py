@@ -13,7 +13,7 @@ st.write(
     """ Choose any 5 fruits!
     """
 )
-my_dataframe = session.table("SMOOTHIES.PUBLIC.FRUIT_OPTIONS").select(
+my_dataframe = st.table("SMOOTHIES.PUBLIC.FRUIT_OPTIONS").select(
     col("FRUIT_NAME"),
     col("SEARCH_ON")
 )
