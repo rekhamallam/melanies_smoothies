@@ -25,6 +25,7 @@ my_dataframe = session.table('smoothies.public.fruit_options')
                       .select(col('FRUIT_NAME'), col('SEARCH_ON'))
 pd_df=mydataframe.to_pandas()
 st.dataframe(pd_df)
+st.stop()
 
 # Extract the value from each Row object into a simple Python list
 ingredients_list = st.multiselect('Choose any 5 fruits!',my_dataframe, max_selections =5) 
