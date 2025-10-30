@@ -39,10 +39,8 @@ if ingredients_list:
             search_on=pd_df.loc[pd_df['FRUI_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
             st.write('he search value for' , FRUIT_CHOSEN,' is ', search_on, '.')
         st.subheader(FRUIT_CHOSEN + 'Nutrition Information')
-        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/" + FRUIT_CHOSEN)
         #sf_df = st.dataframe(data=smothieifroot_response.json(), use_container_width=True)
-        sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
-
+        
         my_insert_stmt = """ insert into smoothies.public.orders(INGREDIENTS,name_on_order)
             values ('""" + ingredients_string + """','""" + name_on_order + """');"""
         st.write(my_insert_stmt)
@@ -51,6 +49,10 @@ if ingredients_list:
         if(time_to_insert):
             session.sql(my_insert_stmt).collect()
             st.success('your order is placed')
+            
+            smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/" + FRUIT_CHOSEN)
+            sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
+
 
         
         
